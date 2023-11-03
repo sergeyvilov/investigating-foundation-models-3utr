@@ -1,0 +1,9 @@
+*.o
+*.e
+*.tmp
+tmp.*
+__pycache__/
+.ipynb_checkpoints/
+.snakemake/
+logs/
+DNABERT/

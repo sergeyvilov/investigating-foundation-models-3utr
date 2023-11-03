@@ -1,0 +1,2 @@
+##INFO=<ID=gnomAD_AF,Number=1,Type=Float,Description="Alternative allele frequency as in GNOMAD v.3.1.1">
+##INFO=<ID=AF_popmax,Number=A,Type=Float,Description="Maximum GNOMAD allele frequency across populations">

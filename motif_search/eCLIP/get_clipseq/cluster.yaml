@@ -1,0 +1,6 @@
+__default__:
+    mem: "2g"
+
+get_negative_set:
+    mem: "16g"
+

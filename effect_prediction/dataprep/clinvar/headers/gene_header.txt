@@ -1,0 +1,1 @@
+##INFO=<ID=gene,Number=.,Type=String,Description="gene name for this promoter mutation">

@@ -1,0 +1,99 @@
+nohup: ignoring input
+mkdir: cannot create directory ‘slurm_logs’: File exists
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job stats:
+job                 count
+----------------  -------
+all                     1
+annotate_PhyloP         2
+get_positive_set        1
+merge_PhyloP            2
+total                   6
+
+Select jobs to execute...
+
+[Wed Aug 16 13:55:09 2023]
+rule get_positive_set:
+    input: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.hg38.extended.bed, /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/GRCh38.3utr_5Klimited.bed
+    output: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.bed
+    jobid: 3
+    reason: Missing output files: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.bed
+    resources: mem_mb=9561, mem_mib=9119, disk_mb=9561, disk_mib=9119, tmpdir=<TBD>
+
+Submitted job 3 with external jobid 'Submitted batch job 8040530'.
+
+[Wed Aug 16 13:55:10 2023]
+rule merge_PhyloP:
+    input: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.neg.PhyloP100.bed, /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.neg.PhyloP241.bed
+    output: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.neg.PhyloP.bed
+    jobid: 9
+    reason: Missing output files: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.neg.PhyloP.bed
+    wildcards: subset=neg
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=<TBD>
+
+Submitted job 9 with external jobid 'Submitted batch job 8040531'.
+[Wed Aug 16 13:55:19 2023]
+Finished job 9.
+1 of 6 steps (17%) done
+[Wed Aug 16 13:59:59 2023]
+Finished job 3.
+2 of 6 steps (33%) done
+Select jobs to execute...
+
+[Wed Aug 16 13:59:59 2023]
+rule annotate_PhyloP:
+    input: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.bed, /s/project/mll/sergey/effect_prediction/tools/PhyloP/241-mammalian-2020v2.tsv.gz
+    output: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP241.bed
+    jobid: 8
+    reason: Missing output files: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP241.bed; Input files updated by another job: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.bed
+    wildcards: subset=pos, consv_model=PhyloP241
+    resources: mem_mb=16000, mem_mib=24600, disk_mb=25794, disk_mib=24600, tmpdir=<TBD>, mem=16g
+
+Submitted job 8 with external jobid 'Submitted batch job 8040532'.
+
+[Wed Aug 16 13:59:59 2023]
+rule annotate_PhyloP:
+    input: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.bed, /s/project/mll/sergey/effect_prediction/tools/PhyloP/hg38.phyloP100way.tsv.gz
+    output: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP100.bed
+    jobid: 2
+    reason: Missing output files: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP100.bed; Input files updated by another job: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.bed
+    wildcards: subset=pos, consv_model=PhyloP100
+    resources: mem_mb=16000, mem_mib=26527, disk_mb=27815, disk_mib=26527, tmpdir=<TBD>, mem=16g
+
+Submitted job 2 with external jobid 'Submitted batch job 8040533'.
+[Wed Aug 16 16:08:48 2023]
+Finished job 8.
+3 of 6 steps (50%) done
+[Wed Aug 16 16:15:18 2023]
+Finished job 2.
+4 of 6 steps (67%) done
+Select jobs to execute...
+
+[Wed Aug 16 16:15:18 2023]
+rule merge_PhyloP:
+    input: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP100.bed, /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP241.bed
+    output: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP.bed
+    jobid: 1
+    reason: Missing output files: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP.bed; Input files updated by another job: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP100.bed, /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP241.bed
+    wildcards: subset=pos
+    resources: mem_mb=1480, mem_mib=1412, disk_mb=1480, disk_mib=1412, tmpdir=<TBD>
+
+Submitted job 1 with external jobid 'Submitted batch job 8040555'.
+[Wed Aug 16 16:17:58 2023]
+Finished job 1.
+5 of 6 steps (83%) done
+Select jobs to execute...
+
+[Wed Aug 16 16:17:58 2023]
+localrule all:
+    input: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP.bed, /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.neg.PhyloP.bed
+    jobid: 0
+    reason: Input files updated by another job: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP.bed, /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.neg.PhyloP.bed
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=/scratch/tmp/l_vilov
+
+[Wed Aug 16 16:17:58 2023]
+Finished job 0.
+6 of 6 steps (100%) done
+Complete log: .snakemake/log/2023-08-16T135508.235403.snakemake.log

@@ -1,0 +1,19 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=16000, mem_mib=26527, disk_mb=27815, disk_mib=26527
+Select jobs to execute...
+
+[Wed Aug 16 14:00:05 2023]
+rule annotate_PhyloP:
+    input: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.bed, /s/project/mll/sergey/effect_prediction/tools/PhyloP/hg38.phyloP100way.tsv.gz
+    output: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP100.bed
+    jobid: 0
+    reason: Missing output files: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.PhyloP100.bed
+    wildcards: subset=pos, consv_model=PhyloP100
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=27815, disk_mib=26527, tmpdir=/scratch/tmp/l_vilov, mem=16g
+
+[Wed Aug 16 16:14:50 2023]
+Finished job 0.
+1 of 1 steps (100%) done

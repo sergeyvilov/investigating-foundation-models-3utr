@@ -1,0 +1,2 @@
+##INFO=<ID=SOMATIC,Number=0,Type=Flag,Description="Identified as somatic in STRELKA matched normal with QSS>100 | QSI>100">
+

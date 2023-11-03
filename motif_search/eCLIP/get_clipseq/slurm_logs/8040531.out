@@ -1,0 +1,19 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954
+Select jobs to execute...
+
+[Wed Aug 16 13:55:17 2023]
+rule merge_PhyloP:
+    input: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.neg.PhyloP100.bed, /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.neg.PhyloP241.bed
+    output: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.neg.PhyloP.bed
+    jobid: 0
+    reason: Missing output files: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.neg.PhyloP.bed
+    wildcards: subset=neg
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=/scratch/tmp/l_vilov
+
+[Wed Aug 16 13:55:18 2023]
+Finished job 0.
+1 of 1 steps (100%) done

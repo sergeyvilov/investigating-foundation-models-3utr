@@ -1,0 +1,1 @@
+##INFO=<ID=PhyloP241,Number=1,Type=Float,Description="PhyloP241 mammalian whole genome score from https://cglgenomics.ucsc.edu/data/cactus/">

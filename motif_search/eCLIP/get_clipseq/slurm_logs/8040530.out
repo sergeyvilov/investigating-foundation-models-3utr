@@ -1,0 +1,18 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=9561, mem_mib=9119, disk_mb=9561, disk_mib=9119
+Select jobs to execute...
+
+[Wed Aug 16 13:55:17 2023]
+rule get_positive_set:
+    input: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.hg38.extended.bed, /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/GRCh38.3utr_5Klimited.bed
+    output: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.bed
+    jobid: 0
+    reason: Missing output files: /s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/eCLIP.3utr.pos.bed
+    resources: mem_mb=9561, mem_mib=9119, disk_mb=9561, disk_mib=9119, tmpdir=/scratch/tmp/l_vilov
+
+[Wed Aug 16 13:59:10 2023]
+Finished job 0.
+1 of 1 steps (100%) done

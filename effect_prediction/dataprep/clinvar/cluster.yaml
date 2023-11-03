@@ -1,0 +1,6 @@
+__default__:
+    mem: "4g"
+    threads_per_core: 1
+    cores: 1
+
+

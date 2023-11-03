@@ -1,0 +1,19 @@
+nohup: ignoring input
+mkdir: cannot create directory ‘slurm_logs’: File exists
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 200
+Job counts:
+	count	jobs
+	1	all
+	1	extract_seq
+	2
+Select jobs to execute...
+
+[Mon Feb 27 13:00:45 2023]
+rule extract_seq:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/outrider/gene_coords/aml_genes_GRCh37.bed
+    output: /lustre/groups/epigenereg01/workspace/projects/vale/outrider/gene_coords/aml_genes_GRCh37.fa
+    jobid: 1
+
+Submitted job 1 with external jobid 'Submitted batch job 12364271'.

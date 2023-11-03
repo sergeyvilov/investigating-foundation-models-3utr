@@ -1,0 +1,1 @@
+##INFO=<ID=PhyloP100,Number=1,Type=Float,Description="PhyloP score for 100 vertebrates">
