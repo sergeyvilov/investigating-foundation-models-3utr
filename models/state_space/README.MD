@@ -1,1 +1,0 @@
-The codes for [models](models/) and [encoding utilites](encoding_utils/) are adopted from [https://github.com/DennisGankin/species-aware-DNA-LM/](https://github.com/DennisGankin/species-aware-DNA-LM/). 

@@ -1,1 +1,0 @@
-This folder is derived from the [official DNABERT repository](https://github.com/jerryji1993/DNABERT)

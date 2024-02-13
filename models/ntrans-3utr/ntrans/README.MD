@@ -1,1 +1,0 @@
-This folder is derived from the [official Nucleotide Transformer HuggingFace page](https://huggingface.co/collections/InstaDeepAI/nucleotide-transformer-65099cdde13ff96230f2e592)
