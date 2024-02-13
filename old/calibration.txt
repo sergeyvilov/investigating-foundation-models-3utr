@@ -1,0 +1,16 @@
+species-aware
+
+epoch 11 - test, loss: 1.577, total acc: 0.790, masked acc: 0.267
+
+Before temperature - NLL: 2.382, ECE: 0.418
+Optimal temperature: 21.870
+After temperature - NLL: 1.607, ECE: 0.055
+
+species-agnostic
+
+epoch 11 - test, loss: 1.391, total acc: 0.577, masked acc: 0.304
+
+Before temperature - NLL: 1.664, ECE: 0.248
+Optimal temperature: 2.710
+After temperature - NLL: 1.414, ECE: 0.041
+
