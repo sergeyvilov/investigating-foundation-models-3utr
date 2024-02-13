@@ -10,10 +10,10 @@
 #SBATCH -J collect_splits
 #SBATCH -c 2
 #SBATCH --mem=2G
-#SBATCH -o /s/project/mll/sergey/effect_prediction/MLM/fasta/240_mammals/shuffled_split/logs/%A_%a.o
-#SBATCH -e /s/project/mll/sergey/effect_prediction/MLM/fasta/240_mammals/shuffled_split/logs/%A_%a.e
+#SBATCH -o /lustre/groups/epigenereg01/workspace/projects/vale/mlm/slurm_logs/%x-%j.o
+#SBATCH -e /lustre/groups/epigenereg01/workspace/projects/vale/mlm/slurm_logs/%x-%j.e
 
-workdir='/s/project/mll/sergey/effect_prediction/MLM/fasta/240_mammals'
+workdir='/lustre/groups/epigenereg01/workspace/projects/vale/mlm/fasta/241_mammals/'
 
 cd $workdir
 
@@ -32,4 +32,4 @@ while  read -r seq_name _ ;do
 
   samtools faidx $fasta "$seq_name" >> $output_fa
 
-done < <(grep -v Homo_sapiens $input_fai)
+done < $input_fai

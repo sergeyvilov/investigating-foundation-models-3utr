@@ -17,25 +17,23 @@
 #SBATCH -J Extract_MSA
 #SBATCH -c 2
 #SBATCH --mem=24G
-#SBATCH -o /s/project/mll/sergey/effect_prediction/MLM/fasta/logs/%A_%a.o
-#SBATCH -e /s/project/mll/sergey/effect_prediction/MLM/fasta/logs/%A_%a.e
+#SBATCH -o /lustre/groups/epigenereg01/workspace/projects/vale/mlm/slurm_logs/%A_%a.o
+#SBATCH -e /lustre/groups/epigenereg01/workspace/projects/vale/mlm/slurm_logs/%A_%a.e
 
 LINE_WIDTH=80
 
-data_dir=/s/project/mll/sergey/effect_prediction/MLM
+data_dir=/lustre/groups/epigenereg01/workspace/projects/vale/mlm/
 
 species_list='241_mammals.txt'
 
 hal_file="$data_dir/600_way/241-mammalian-2020v2.hal"
-utr_table="$data_dir/UTR_coords/GRCh38_3_prime_UTR_all_species.tsv" 
+utr_table="$data_dir/UTR_coords/GRCh38_3_prime_UTR_all_species.tsv" #see get_UTR_all_species.ipynb
 
-output_dir="$data_dir/fasta/240_mammals/species"
+output_dir="$data_dir/fasta/241_mammals/species/"
 
 mkdir -p $output_dir
 
 species_name=$(head -n ${SLURM_ARRAY_TASK_ID} $species_list | tail -1)
-
-species_name=Homo_sapiens
 
 output_fasta="$output_dir/$species_name.fa" 
 

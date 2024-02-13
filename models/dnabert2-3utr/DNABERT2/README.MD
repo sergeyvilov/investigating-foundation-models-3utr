@@ -1,0 +1,1 @@
+This folder is derived from the [official DNABERT-2 HuggingFace page](https://huggingface.co/zhihan1996/DNABERT-2-117M/tree/main)

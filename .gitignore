@@ -6,4 +6,4 @@ __pycache__/
 .ipynb_checkpoints/
 .snakemake/
 logs/
-DNABERT/
+.git/

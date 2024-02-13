@@ -3,13 +3,13 @@ import os
 import pandas as pd
 
 
-progress_dir = '/s/project/mll/sergey/effect_prediction/MLM/eCLIP/data/' #output dir
+progress_dir = '/lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data/' #output dir
 
-liftover_dir = '/s/project/mll/sergey/effect_prediction/tools/liftOver/'
+liftover_dir = '/lustre/groups/epigenereg01/workspace/projects/vale/tools/liftOver/'
 
-table_3utr = '/s/project/mll/sergey/effect_prediction/MLM/UTR_coords/GRCh38_3_prime_UTR_clean.bed'
+table_3utr = '/lustre/groups/epigenereg01/workspace/projects/vale/mlm/UTR_coords/GRCh38_3_prime_UTR_clean.bed'
 
-PhyloP_dir = '/s/project/mll/sergey/effect_prediction/tools/PhyloP/'
+PhyloP_dir = '/lustre/groups/epigenereg01/workspace/projects/vale/mlm/tables/PhyloP/'
 
 PhyloP_tsv = {'PhyloP100': PhyloP_dir + 'hg38.phyloP100way.tsv.gz',
             'PhyloP241': PhyloP_dir + '241-mammalian-2020v2.tsv.gz',}
@@ -23,7 +23,7 @@ rule get_tss_bed:
     input:
         meta_tsv = progress_dir + 'ENCSR456FVU_metadata.tsv' #https://www.encodeproject.org/publication-data/ENCSR456FVU/
     output:
-        bed = progress_dir + 'eCLIP.hg19.bed6'
+        bed = temp(progress_dir + 'eCLIP.hg19.bed6')
     shell:
         r'''
         > {output.bed}
@@ -37,8 +37,8 @@ rule liftover:
         bed = progress_dir + 'eCLIP.hg19.bed6',
         chain_file = liftover_dir + 'hg19ToHg38.over.chain.gz' #chain file to convert positions see https://hgdownload.soe.ucsc.edu/goldenPath/hg38/liftOver/
     output:
-        bed = progress_dir + 'eCLIP.hg38.liftover.bed',
-        umap = progress_dir + 'eCLIP_hg19.umap'
+        bed = temp(progress_dir + 'eCLIP.hg38.liftover.bed'),
+        umap = temp(progress_dir + 'eCLIP_hg19.umap')
     log:
         progress_dir + 'logs/liftover.log'
     shell:
@@ -52,7 +52,7 @@ rule extend_50:
     input:
         bed = progress_dir + 'eCLIP.hg38.liftover.bed',
     output:
-        bed = progress_dir + 'eCLIP.hg38.extended.bed',
+        bed = temp(progress_dir + 'eCLIP.hg38.extended.bed'),
     shell:
         r'''
         cat {input.bed}|awk 'BEGIN{{OFS="\t"}}{{if ($6=="+") {{$2-=50}} else {{$3+=50}};print}}'|sort -k1,1 -k2,2n > {output.bed}

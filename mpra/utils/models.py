@@ -1,8 +1,6 @@
 import itertools
 import numpy as np
 
-import gensim.models 
-
 class Kmerizer:
     '''
     Helper class to generate k-mers and Word2Vec embeddings

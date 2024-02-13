@@ -27,6 +27,6 @@ else
     
 fi
 
-done < <(python /data/ouga/home/ag_gagneur/l_vilov/workspace/species-aware-DNA-LM/dataprep/aligned/fasta/utils/maf_to_a2m.py $maf)
+done < <(python ./utils/maf_to_a2m.py $maf)
 
 

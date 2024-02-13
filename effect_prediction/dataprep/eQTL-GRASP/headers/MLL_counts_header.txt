@@ -1,0 +1,1 @@
+##INFO=<ID=MLL_counts,Type=Integer,Number=3,Description="counts in lymphoid (out of 1737), myeloid (out of 2681) and undefined (out of 456) MLL samples">

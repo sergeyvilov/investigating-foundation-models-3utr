@@ -1,10 +1,10 @@
 import pandas as pd
 
-progress_dir = f'/lustre/groups/epigenereg01/workspace/projects/vale/MLM/clinvar/' #output dir
+progress_dir = f'/lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/clinvar/' #output dir
 
 clinvar_vcf = '/lustre/groups/epigenereg01/workspace/projects/vale/tools/clinvar/clinvar_20231007.vcf.gz'
 
-utr3_bed = '/lustre/groups/epigenereg01/workspace/projects/vale/MLM/UTR_coords/GRCh38_3_prime_UTR_clean-sorted.bed'
+utr3_bed = '/lustre/groups/epigenereg01/workspace/projects/vale/mlm/UTR_coords/GRCh38_3_prime_UTR_clean-sorted.bed'
 
 rule all:
     input:

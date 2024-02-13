@@ -1,0 +1,5 @@
+##INFO=<ID=uQSI,Number=1,Type=Integer,Description="Quality score for any somatic variant, ie. for the ALT haplotype to be present at a significantly different frequency in the tumor and normal, from unmatched calling">
+##INFO=<ID=uQSS,Number=1,Type=Integer,Description="Quality score for any somatic snv, ie. for the ALT allele to be present at a significantly different frequency in the tumor and normal, from unmatched calling">
+##INFO=<ID=uVQSR,Number=1,Type=Float,Description="Recalibrated quality score expressing the phred scaled probability of the somatic call being a FP observation,from unmatched calling">
+##INFO=<ID=uSTRELKA,Number=0,Type=Flag,Description="Also called by unmatched normal Strelka">
+

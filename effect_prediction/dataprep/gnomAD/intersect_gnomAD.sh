@@ -12,12 +12,12 @@ gnomAD_light='/lustre/groups/epigenereg01/workspace/projects/vale/tools/gnomAD/v
 
 utr3bed=UTR_coords/GRCh38_3_prime_UTR_clean-sorted.bed # 3'UTR coordinates
 
-workdir='/lustre/groups/epigenereg01/workspace/projects/vale/MLM/'
+workdir='/lustre/groups/epigenereg01/workspace/projects/vale/mlm/'
 
 cd $workdir
 
 
-output_dir=gnomAD/
+output_dir=variants/prefiltered/gnomAD/
 
 mkdir -p $output_dir
 

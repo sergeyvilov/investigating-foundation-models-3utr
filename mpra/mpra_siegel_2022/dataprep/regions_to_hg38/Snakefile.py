@@ -4,13 +4,13 @@ import pandas as pd
 
 #liftover gene coordinates from GRCh37 to GRCh38
 
-regions_tsv = '/s/project/mll/sergey/effect_prediction/MLM/siegel_2022/Beas2B.tsv'
+regions_tsv = '/lustre/groups/epigenereg01/workspace/projects/vale/mlm/mpra/siegel_2022/Beas2B.tsv'
 
-progress_dir = '/s/project/mll/sergey/effect_prediction/MLM/siegel_2022/regions_hg38/' #output dir
+progress_dir = '/lustre/groups/epigenereg01/workspace/projects/vale/mlm/mpra/siegel_2022/regions_hg38/' #output dir
 
-utr3_bed = '/s/project/mll/sergey/effect_prediction/MLM/UTR_coords/GRCh38_3_prime_UTR_clean.bed'
+utr3_bed = '/lustre/groups/epigenereg01/workspace/projects/vale/mlm/UTR_coords/GRCh38_3_prime_UTR_clean.bed'
 
-liftover_dir = '/s/project/mll/sergey/effect_prediction/tools/liftOver/'
+liftover_dir = '/lustre/groups/epigenereg01/workspace/projects/vale/tools/liftOver/'
 
 rule all:
     input:
@@ -34,7 +34,7 @@ rule liftover:
         bed = progress_dir + 'regions_GRCh37.bed',
         chain_file = liftover_dir + 'hg19ToHg38.over.chain.gz' #chain file to convert positions see https://hgdownload.soe.ucsc.edu/goldenPath/hg38/liftOver/
     output:
-        bed = progress_dir + 'regions_GRCh38.liftover.bed',
+        bed = temp(progress_dir + 'regions_GRCh38.liftover.bed'),
         umap = temp(progress_dir + 'regions_GRCh38.umap')
     log:
         progress_dir + 'logs/liftover.log'

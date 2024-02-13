@@ -1,0 +1,66 @@
+nohup: ignoring input
+mkdir: cannot create directory ‘slurm_logs’: File exists
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job stats:
+job                count    min threads    max threads
+---------------  -------  -------------  -------------
+all                    1              1              1
+intersect_3utr         2              1              1
+intersect_dbSNP        2              1              1
+total                  5              1              1
+
+Select jobs to execute...
+
+[Tue Oct 24 17:55:18 2023]
+rule intersect_dbSNP:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2eQTL_ids.tsv, /lustre/groups/epigenereg01/workspace/projects/vale/tools/dbSNP/GRCh38/00-common_all.vcf.gz
+    output: /lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2eQTL.hg38.bed
+    jobid: 2
+    reason: Updated input files: /lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2eQTL_ids.tsv
+    wildcards: QTLtype=eQTL
+    resources: mem_mb=3040, mem_mib=2900, disk_mb=3040, disk_mib=2900, tmpdir=<TBD>
+
+Submitted job 2 with external jobid 'Submitted batch job 14042958'.
+
+[Tue Oct 24 17:55:42 2023]
+rule intersect_dbSNP:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2meQTL_ids.tsv, /lustre/groups/epigenereg01/workspace/projects/vale/tools/dbSNP/GRCh38/00-common_all.vcf.gz
+    output: /lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2meQTL.hg38.bed
+    jobid: 6
+    reason: Updated input files: /lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2meQTL_ids.tsv
+    wildcards: QTLtype=meQTL
+    resources: mem_mb=3038, mem_mib=2898, disk_mb=3038, disk_mib=2898, tmpdir=<TBD>
+
+Submitted job 6 with external jobid 'Submitted batch job 14042959'.
+[Tue Oct 24 17:55:54 2023]
+Error in rule intersect_dbSNP:
+    jobid: 2
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2eQTL_ids.tsv, /lustre/groups/epigenereg01/workspace/projects/vale/tools/dbSNP/GRCh38/00-common_all.vcf.gz
+    output: /lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2eQTL.hg38.bed
+    shell:
+        
+        bcftools view -i "ID=@$/lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2eQTL_ids.tsv" -v  "snps,indels" --max-alleles 2 /lustre/groups/epigenereg01/workspace/projects/vale/tools/dbSNP/GRCh38/00-common_all.vcf.gz\
+        |awk 'BEGIN{FS="\t";OFS="\t"}{print "chr"$1,$2-1,$2,"GT="$4"/"$5}' > /lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2eQTL.hg38.bed
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 14042958
+
+Error executing rule intersect_dbSNP on cluster (jobid: 2, external: Submitted batch job 14042958, jobscript: /home/icb/sergey.vilov/workspace/MLM/perbase_pred/GRASP/dataprep/.snakemake/tmp.3_ilbkb5/snakejob.intersect_dbSNP.2.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Tue Oct 24 17:55:54 2023]
+Error in rule intersect_dbSNP:
+    jobid: 6
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2meQTL_ids.tsv, /lustre/groups/epigenereg01/workspace/projects/vale/tools/dbSNP/GRCh38/00-common_all.vcf.gz
+    output: /lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2meQTL.hg38.bed
+    shell:
+        
+        bcftools view -i "ID=@$/lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2meQTL_ids.tsv" -v  "snps,indels" --max-alleles 2 /lustre/groups/epigenereg01/workspace/projects/vale/tools/dbSNP/GRCh38/00-common_all.vcf.gz\
+        |awk 'BEGIN{FS="\t";OFS="\t"}{print "chr"$1,$2-1,$2,"GT="$4"/"$5}' > /lustre/groups/epigenereg01/workspace/projects/vale/MLM/GRASP/GRASP2meQTL.hg38.bed
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 14042959
+
+Error executing rule intersect_dbSNP on cluster (jobid: 6, external: Submitted batch job 14042959, jobscript: /home/icb/sergey.vilov/workspace/MLM/perbase_pred/GRASP/dataprep/.snakemake/tmp.3_ilbkb5/snakejob.intersect_dbSNP.6.sh). For error details see the cluster log and the log files of the involved rule(s).
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2023-10-24T175514.161492.snakemake.log

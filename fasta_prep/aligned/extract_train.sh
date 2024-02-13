@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -J MSA_coverage
-#SBATCH -o /s/project/mll/sergey/effect_prediction/MLM/aligned/data/logs/%A_%a.o
-#SBATCH -e /s/project/mll/sergey/effect_prediction/MLM/aligned/data/logs/%A_%a.e
+#SBATCH -o /lustre/groups/epigenereg01/workspace/projects/vale/mlm/slurm_logs/%x-%j.o
+#SBATCH -e /lustre/groups/epigenereg01/workspace/projects/vale/mlm/slurm_logs/%x-%j.e
 #SBATCH -c 2
 #SBATCH --mem=24G
 
@@ -19,12 +19,12 @@ MAX_LEN=5000 #maximum 3'UTR length to extract
 
 LINES_PER_RUN=19 #number of lines processed in each task
 
-data_dir=/s/project/mll/sergey/effect_prediction/MLM
+data_dir=/lustre/groups/epigenereg01/workspace/projects/vale/mlm/
 
 hal_file="$data_dir/600_way/241-mammalian-2020v2.hal"
 utr_table="$data_dir/UTR_coords/GRCh38_3_prime_UTR_clean-sorted.bed" 
 
-output_dir="$data_dir/aligned/data"
+output_dir="$data_dir/fasta/aligned/"
 
 mkdir -p $output_dir/tmp #temporary folder for maf files
 
