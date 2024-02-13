@@ -6,13 +6,14 @@ Sergey Vilov and Matthias Heinig
 
 ## Codes for data analysis
 
-* [fasta_prep](fasta_prep/) : extract 3'UTR sequences from Zoonomia whole genome alignment
 * [effect_prediction](effect_prediction/) : compute functionality scores for ClinVar, gnomAD, and eQTL variants and evaluate the models
 * [motif_search](motif_search/) : evaluate the models on RBP binding motifs prediction
 * [half_life](half_life/) : prediction of mRNA half-life from (Agarwal and Kelley, 2022) based on language model embeddings
 * [mpra](mpra/) : prediction of measured MPRA activity for (Griesemer et al., 2021) and (Siegel et al., 2022) experiments
 * [embeddings](embeddings/) : generate embeddings for the DNABERT, DNABERT-2, and NT models
 * [inference](inference/) : derive per-base scores for DNABERT, NT, and PhyloP models
+
+**The codes for extraction of 3'UTR sequences from the Zoonomia HAL archives and for model training will be made available upon paper acceptance**
 
 ## Links to the scripts used to generate paper figures and tables:
 
