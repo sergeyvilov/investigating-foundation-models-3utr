@@ -13,7 +13,9 @@ Sergey Vilov and Matthias Heinig
 * [embeddings](embeddings/) : generate embeddings for the DNABERT, DNABERT-2, and NT models
 * [inference](inference/) : derive per-base scores for DNABERT, NT, and PhyloP models
 
-**The codes for extraction of 3'UTR sequences from the Zoonomia HAL archives and for model training will be made available upon paper acceptance**
+**The codes for extraction of 3'UTR sequences from the Zoonomia .hal alignment and the scripts for model training will be made available upon the paper acceptance.**
+
+The intermediate data for the downstream tasks can be found at [https://zenodo.org/records/10655595](https://zenodo.org/records/10655595). The 3'UTR multispecies fasta files and model weights will be added to the Zenodo repository upon the paper acceptance.
 
 ## Links to the scripts used to generate paper figures and tables:
 
@@ -57,7 +59,7 @@ conda activate lm-3utr-models
 pip install -r requirements.txt
 ```
 
-4. To train DNABERT-2 models also install 
+4. To train DNABERT-2 models also install
 ```
 pip install triton==2.0.0.dev20221202 --force --no-dependencies
 ```
