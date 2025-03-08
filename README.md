@@ -14,6 +14,8 @@ Sergey Vilov and Matthias Heinig
 * [embeddings](embeddings/) : generate embeddings for the DNABERT, DNABERT-2, NT as well as embeddings and per-base zero-shot scores for StateSpace models
 * [zero-shot-probs](zero-shot-probs/) : derive per-base zero-shot scores for DNABERT, NT, PhyloP, and CADD models
 
+The analysis data, scores for all models, and model weights can be found in our [Zenodo repository](https://zenodo.org/records/10655595)
+
 ## Links to the scripts used to generate paper figures and tables:
 
 [Fig. 1: ROC AUC scores for RBP binding motif predictions](rbp_motifs/analysis/auc.ipynb)

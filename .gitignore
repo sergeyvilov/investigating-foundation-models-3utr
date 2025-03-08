@@ -1,0 +1,12 @@
+*.o
+*.e
+*.tmp
+tmp.*
+__pycache__/
+.ipynb_checkpoints/
+.snakemake/
+logs/
+.git/
+log
+slurm_logs/
+*.log
