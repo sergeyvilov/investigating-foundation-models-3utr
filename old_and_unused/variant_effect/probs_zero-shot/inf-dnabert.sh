@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# USAGE: sbatch --array=0-9%10 dnabert.sh
+
+#SBATCH -o '/lustre/groups/epigenereg01/workspace/projects/vale/mlm/slurm_logs/%x-%A_%a.o'
+#SBATCH -e '/lustre/groups/epigenereg01/workspace/projects/vale/mlm/slurm_logs/%x-%A_%a.e'
+#SBATCH -J dnbinf
+#SBATCH --gres=gpu:1
+#SBATCH -p gpu_p
+#SBATCH --qos=gpu_normal
+#SBATCH -x supergpu14
+#SBATCH -c 4 #CPU cores required
+#SBATCH -t 1-00:00:00 #Job runtime
+#SBATCH --mem=64G
+#SBATCH --chdir=/home/icb/sergey.vilov/workspace/MLM/zero-shot-probs/dnabert
+
+source  ~/.bashrc; conda activate ntrans
+
+export LD_LIBRARY_PATH=~/miniconda3/lib
+
+model_name='dnabert'
+
+data_dir='/lustre/groups/epigenereg01/workspace/projects/vale/mlm'
+
+fasta=$data_dir'/variants/selected/variants_dna_fwd.fa'
+checkpoint_dir=$data_dir/"models/whole_genome/$model_name/6-new-12w-0"
+
+strand_bed=$data_dir'/UTR_coords/GRCh38_3_prime_UTR_clean-sorted.bed'
+
+whitelist=$data_dir'/variants/selected/reference_allele.tsv'
+
+output_dir="$data_dir/variants/zero-shot-probs/$model_name/"
+
+mkdir -p $output_dir
+
+fold=${SLURM_ARRAY_TASK_ID:-0}
+#N_folds=${SLURM_ARRAY_TASK_COUNT:-0}
+N_folds=10
+
+srun python -u dna_bert_eval.py --fasta $fasta --checkpoint_dir $checkpoint_dir --output_dir $output_dir  --predict_only_lowercase --crop_lowercase --N_folds $N_folds --fold $fold --whitelist $whitelist --strand_bed $strand_bed --central_window 1 > $output_dir/log_$fold 2>&1
+

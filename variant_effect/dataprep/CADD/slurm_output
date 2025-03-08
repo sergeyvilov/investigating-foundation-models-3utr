@@ -1,0 +1,54 @@
+nohup: ignoring input
+mkdir: cannot create directory ‘slurm_logs’: File exists
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job stats:
+job                      count    min threads    max threads
+---------------------  -------  -------------  -------------
+all                          1              1              1
+intersect_3utr_scores        2              1              1
+total                        3              1              1
+
+Select jobs to execute...
+
+[Thu Mar 28 13:42:20 2024]
+rule intersect_3utr_scores:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.indels.scores.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.indels.scores.tsv.gz.tbi, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/GRCh38_3_prime_UTR_clean-sorted.bed
+    output: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.indels.scores.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.indels.scores.tsv.gz.tbi
+    jobid: 9
+    reason: Missing output files: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.indels.scores.tsv.gz
+    wildcards: vartype=indels
+    resources: mem_mb=2405, mem_mib=2294, disk_mb=2405, disk_mib=2294, tmpdir=<TBD>
+
+Submitted job 9 with external jobid 'Submitted batch job 19815564'.
+
+[Thu Mar 28 13:42:32 2024]
+rule intersect_3utr_scores:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.snps.scores.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.snps.scores.tsv.gz.tbi, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/GRCh38_3_prime_UTR_clean-sorted.bed
+    output: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.snps.scores.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.snps.scores.tsv.gz.tbi
+    jobid: 7
+    reason: Missing output files: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.snps.scores.tsv.gz
+    wildcards: vartype=snps
+    resources: mem_mb=166851, mem_mib=159122, disk_mb=166851, disk_mib=159122, tmpdir=<TBD>
+
+Submitted job 7 with external jobid 'Submitted batch job 19815565'.
+[Thu Mar 28 13:43:07 2024]
+Finished job 9.
+1 of 3 steps (33%) done
+[Thu Mar 28 14:10:09 2024]
+Finished job 7.
+2 of 3 steps (67%) done
+Select jobs to execute...
+
+[Thu Mar 28 14:10:11 2024]
+localrule all:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.snps.pos.bed, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.indels.pos.bed, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.snps.neg.bed, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.indels.neg.bed, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.snps.scores.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.indels.scores.tsv.gz
+    jobid: 0
+    reason: Input files updated by another job: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.indels.scores.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/CADD/CADD.3utr.snps.scores.tsv.gz
+    resources: mem_mb=1831, mem_mib=1747, disk_mb=1831, disk_mib=1747, tmpdir=/tmp
+
+[Thu Mar 28 14:10:11 2024]
+Finished job 0.
+3 of 3 steps (100%) done
+Complete log: .snakemake/log/2024-03-28T134203.236605.snakemake.log

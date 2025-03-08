@@ -1,0 +1,3 @@
+NODELIST=supergpu[02-03]
+MASTER_ADDR=supergpu02
+slurmstepd: error: *** JOB 19124961 ON supergpu02 CANCELLED AT 2024-03-09T19:16:06 ***

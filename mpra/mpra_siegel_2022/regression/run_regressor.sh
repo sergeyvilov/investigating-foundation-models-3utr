@@ -28,8 +28,8 @@ c=0
 
 for onlyref in 0;do
 
-    for regressor in Ridge SVR MLP; do
-
+    for regressor in Ridge SVR; do
+    
     output_dir="${data_dir}/predictions/onlyref_$onlyref/${regressor}/"
 
     mkdir -p $output_dir
@@ -38,9 +38,14 @@ for onlyref in 0;do
 
             for cell_type in Jurkat Beas2B; do
 
-                mpra_tsv="${data_dir}/${cell_type}.tsv"
+                mpra_tsv="${data_dir}/preprocessing/${cell_type}.tsv"
 
-                for model in dnabert dnabert2 ntrans-v2-250m ntrans-v2-500m dnabert-3utr dnabert2-3utr ntrans-v2-250m-3utr stspace stspace-spaw 5mers; do
+                for model in 5mers \
+                             dnabert dnabert-3utr-2e \
+                             dnabert2 dnabert2-zoo dnabert2-3utr-2e \
+                             ntrans-v2-100m ntrans-v2-100m-3utr-2e \
+                             stspace-3utr-2e stspace-spaw-3utr-2e \
+                             stspace-spaw-3utr-DNA stspace-3utr-DNA stspace-3utr-hs; do
 
                     if [ ${SLURM_ARRAY_TASK_ID} -eq $c ]; then
 
@@ -54,20 +59,29 @@ for onlyref in 0;do
                             n_hpp_trials=300
                         fi
 
+                        #config_name=$output_dir/${cell_type}-${response}-stspace-best.config.json
+                        #
+                        #if [ -f "${config_name}" ]; then
+                        #  config="--config $config_name"
+                        #  cp $config_name $output_dir/${cell_type}-${response}-${model}.config.json
+                        #else
+                        #  config=""
+                        #fi
+
                         output_name=$output_dir/${cell_type}-${response}-${model}.tsv
 
-                        #if ! [ -f "${output_name}" ]; then
+                        if ! [ -f "${output_name}" ]; then
 
                             echo $output_name
 
                             params="--mpra_tsv $mpra_tsv --model $model $embeddings \
                             --response $response --onlyref $onlyref --regressor $regressor \
                             --n_hpp_trials ${n_hpp_trials} --cv_splits_hpp 5  \
-                            --output_name $output_name --seed 1  --n_jobs 10 "
+                            --output_name $output_name --seed 1  --n_jobs 10"
 
                             python -u run_regressor.py ${params} > ${output_dir}/${cell_type}-${response}-${model}.log  2>${output_dir}/${cell_type}-${response}-${model}.err
 
-                        #fi
+                        fi
                     fi
 
                     c=$((c+1))

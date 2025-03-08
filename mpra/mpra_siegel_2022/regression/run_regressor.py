@@ -32,7 +32,7 @@ from multiprocessing import Pool
 
 import optuna
 
-sys.path.append("/home/icb/sergey.vilov/workspace/MLM/mpra/utils")
+sys.path.append("/home/icb/sergey.vilov/workspace/MLM/utils")
 
 from mlp import *
 from models import *
@@ -41,9 +41,6 @@ from misc import dotdict
 import scipy.stats
 
 # In[2]:
-
-
-data_dir = '/lustre/groups/epigenereg01/workspace/projects/vale/mlm/siegel_2022/'
 
 
 # In[3]:
@@ -72,7 +69,7 @@ parser.add_argument("--onlyknown", help = "1 to use only SNP variants with dbSNP
 
 parser.add_argument("--onlyref", help = "1 to use only reference sequences", type = int, default = None, required = None)
 
-parser.add_argument("--onlyARE", help = "1 to use only ARE variants", type = int, default = 1, required = None)
+parser.add_argument("--onlyARE", help = "1 to use only ARE variants", type = int, default = None, required = None)
 
 parser.add_argument("--n_hpp_trials", help = "number of hpp search trials", type = int, default = 100, required = False)
 #parser.add_argument("--keep_first", help = "perform hpp search only at the first split, then use these hyperparameters", action='store_true', default = False, required = False)
@@ -106,9 +103,7 @@ if input_params.response == 'steady_state':
 elif input_params.response == 'stability':
     mpra_df['Expression'] = mpra_df.ratios_T4T0_GC_resid
 
-#flt = (mpra_df.Expression.isna()) | (mpra_df.ARE_length_perfect.isna()) | (mpra_df.stop_codon_dist.isna()) | (mpra_df.stop_codon_dist>5000) | (~mpra_df.issnp.astype(bool))
-
-flt = (mpra_df.Expression.isna()) | (mpra_df.stop_codon_dist.isna()) | (~mpra_df.issnp.astype(bool))
+flt = (mpra_df.Expression.isna()) | (~mpra_df.issnp.astype(bool))
 
 if input_params.onlyknown:
     flt = (flt)|(mpra_df.SNP.isna())
@@ -127,10 +122,9 @@ if input_params.embeddings!=None:
         X = pickle.load(f)
         print(f'number of sequences after filtering: {len(mpra_df)}')
         print(f"embeddings size: {len(X['embeddings'])}")
-        seq_indices=[int(seq_name.replace('id_','')) for seq_name in X['seq_names']]
-        mpra_df = mpra_df[mpra_df.index.isin(seq_indices)]
+        mpra_df = mpra_df[mpra_df.ids.isin(X['seq_names'])]
         embeddings = {seq_name:emb for seq_name,emb in zip(X['seq_names'], X['embeddings'])}
-        X = [embeddings[f'id_{seq_idx}'] for seq_idx in mpra_df.index]
+        X = [embeddings[id] for id in mpra_df.ids.values]
         X = np.array(X)
         print(f'number of sequences overlapping with embeddings: {len(X)}')
         #X = X[mpra_df.index]
@@ -151,7 +145,8 @@ elif input_params.model=='effective_length':
     X = mpra_df.ARE_registration_perfect + mpra_df.ARE_length_perfect
     X = np.expand_dims(X.values,1)
 
-mpra_df['group'] = mpra_df.region.apply(lambda x:x.split('|')[1].split(':')[0])
+#mpra_df['group'] = mpra_df.region.apply(lambda x:x.split('|')[1].split(':')[0])
+mpra_df['group'] = mpra_df.chrom
 
 mpra_df.reset_index(drop=True, inplace=True) #important for joining results at the end
 
@@ -306,7 +301,7 @@ def apply_regression(args):
         #predict with Lasso
         #use inner CV loop to adjust alpha
 
-        group_kfold = sklearn.model_selection.GroupKFold(n_folds=input_params.cv_splits_hpp).split(X[train_idx],y[train_idx],groups[train_idx])
+        group_kfold = sklearn.model_selection.GroupKFold(n_splits=input_params.cv_splits_hpp).split(X[train_idx],y[train_idx],groups[train_idx])
 
         pipe = sklearn.pipeline.make_pipeline(sklearn.preprocessing.StandardScaler(), sklearn.linear_model.LassoCV(cv=group_kfold, alphas=10.**np.arange(-6,0)))
 
@@ -316,9 +311,9 @@ def apply_regression(args):
         #predict with Ridge
         #use inner CV loop to adjust alpha
 
-        group_kfold = sklearn.model_selection.GroupKFold(n_folds=input_params.cv_splits_hpp).split(X[train_idx],y[train_idx],groups[train_idx])
+        group_kfold = sklearn.model_selection.GroupKFold(n_splits=input_params.cv_splits_hpp).split(X[train_idx],y[train_idx],groups[train_idx])
 
-        pipe = sklearn.pipeline.make_pipeline(sklearn.preprocessing.StandardScaler(), sklearn.linear_model.RidgeCV(cv=group_kfold, alphas=10.**np.arange(-5,6)))
+        pipe = sklearn.pipeline.make_pipeline(sklearn.preprocessing.StandardScaler(), sklearn.linear_model.RidgeCV(cv=group_kfold, alphas=10.**np.arange(0,5,0.5)))
 
     pipe.fit(X[train_idx],y[train_idx])
 

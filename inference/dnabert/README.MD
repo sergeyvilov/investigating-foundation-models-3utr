@@ -1,1 +1,0 @@
-The code in this folder is heavily adopted from [https://github.com/DennisGankin/species-aware-DNA-LM/blob/main/notebooks/dna_bert_eval.ipynb](https://github.com/DennisGankin/species-aware-DNA-LM/blob/main/notebooks/dna_bert_eval.ipynb)

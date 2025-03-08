@@ -30,7 +30,7 @@ from multiprocessing import Pool
 
 import optuna
 
-sys.path.append("/home/icb/sergey.vilov/workspace/MLM/mpra/utils")
+sys.path.append("/home/icb/sergey.vilov/workspace/MLM/utils")
 
 from mlp import *
 from models import *
@@ -92,9 +92,9 @@ mpra_df = pd.read_csv(input_params.mpra_tsv, sep='\t') #sequence info
 # Take only SNP mutations
 # Remove nan values in Expression column
 
-is_snp = mpra_df.ref_allele.str.len() == mpra_df.alt_allele.str.len()
+is_snp = mpra_df.ref.str.len() == mpra_df.alt.str.len()
 
-flt = mpra_df[f'log2FoldChange_Skew_{input_params.cell_type}'].isna()  | (~is_snp) #| (mpra_df.stop_codon_dist>5000) #| mpra_df.oligo_id.str.contains('_ref$')
+flt = mpra_df[f'log2FoldChange_Ref_{input_params.cell_type}'].isna() | mpra_df[f'log2FoldChange_Alt_{input_params.cell_type}'].isna()  | (~is_snp) 
 
 mpra_df = mpra_df[~flt]
 
@@ -129,7 +129,7 @@ elif input_params.model=='griesemer':
 
     X = minseq_model(mpra_df)
 
-X = np.hstack((X,np.expand_dims(mpra_df.min_free_energy.values,axis=1)))
+#X = np.hstack((X,np.expand_dims(mpra_df.min_free_energy.values,axis=1)))
 
 mpra_df.reset_index(drop=True, inplace=True) #important for joining results at the end
 
@@ -256,6 +256,7 @@ if input_params.config:
     with open(input_params.config, 'r') as f:
         hpp_dict = json.load(f)
     print('Using hyperparameters: ',hpp_dict)
+    save_params(hpp_dict)
 
 elif input_params.regressor=='SVR':
     hpp_dict = hpp_search_svr(X[train_idx],y[train_idx],groups[train_idx],cv_splits = input_params.cv_splits_hpp)
@@ -285,7 +286,7 @@ def apply_regression(args):
         #predict with Lasso
         #use inner CV loop to adjust alpha
 
-        group_kfold = sklearn.model_selection.GroupKFold(n_folds=input_params.cv_splits_hpp).split(X[train_idx],y[train_idx],groups[train_idx])
+        group_kfold = sklearn.model_selection.GroupKFold(n_splits=input_params.cv_splits_hpp).split(X[train_idx],y[train_idx],groups[train_idx])
 
         pipe = sklearn.pipeline.make_pipeline(sklearn.preprocessing.StandardScaler(), sklearn.linear_model.LassoCV(cv=group_kfold, alphas=10.**np.arange(-6,0)))
 
@@ -295,11 +296,14 @@ def apply_regression(args):
         #predict with Ridge
         #use inner CV loop to adjust alpha
 
-        group_kfold = sklearn.model_selection.GroupKFold(n_folds=input_params.cv_splits_hpp).split(X[train_idx],y[train_idx],groups[train_idx])
-
-        pipe = sklearn.pipeline.make_pipeline(sklearn.preprocessing.StandardScaler(), sklearn.linear_model.RidgeCV(cv=group_kfold, alphas=10.**np.arange(-5,6)))
+        group_kfold = sklearn.model_selection.GroupKFold(n_splits=input_params.cv_splits_hpp).split(X[train_idx],y[train_idx],groups[train_idx])
+            
+        pipe = sklearn.pipeline.make_pipeline(sklearn.preprocessing.StandardScaler(), sklearn.linear_model.RidgeCV(cv=group_kfold, alphas=10.**np.arange(1,5)))
 
     pipe.fit(X[train_idx],y[train_idx])
+
+    if input_params.regressor == 'Ridge':
+            print(f'Best alpha: {pipe[1].alpha_}')
 
     y_pred = pipe.predict(X[test_idx])
 

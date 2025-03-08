@@ -1,0 +1,55 @@
+nohup: ignoring input
+mkdir: cannot create directory ‘slurm_logs’: File exists
+Building DAG of jobs...
+File path /lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data//logs/get_negative_set.log contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path /lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data//logs/get_negative_set.log contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job stats:
+job                     count    min threads    max threads
+--------------------  -------  -------------  -------------
+all                         1              1              1
+get_positive_IDR_set        1              1              1
+get_positive_set            1              1              1
+total                       3              1              1
+
+Select jobs to execute...
+
+[Tue Dec 24 22:24:15 2024]
+rule get_positive_IDR_set:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data/eCLIP.hg38.extended.bed, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/UTR_coords/GRCh38_3_prime_UTR_clean.bed
+    output: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data/eCLIP.3utr.pos_IDR.bed
+    jobid: 1
+    reason: Missing output files: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data/eCLIP.3utr.pos_IDR.bed; Code has changed since last execution
+    resources: mem_mb=9568, mem_mib=9125, disk_mb=9568, disk_mib=9125, tmpdir=<TBD>
+
+Submitted job 1 with external jobid 'Submitted batch job 30565852'.
+
+[Tue Dec 24 22:24:31 2024]
+rule get_positive_set:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data/eCLIP.hg38.extended.bed, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/UTR_coords/GRCh38_3_prime_UTR_clean.bed
+    output: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data/eCLIP.3utr.pos.bed
+    jobid: 5
+    reason: Missing output files: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data/eCLIP.3utr.pos.bed
+    resources: mem_mb=9568, mem_mib=9125, disk_mb=9568, disk_mib=9125, tmpdir=<TBD>
+
+Submitted job 5 with external jobid 'Submitted batch job 30565853'.
+[Tue Dec 24 22:25:12 2024]
+Finished job 1.
+1 of 3 steps (33%) done
+[Tue Dec 24 22:27:12 2024]
+Finished job 5.
+2 of 3 steps (67%) done
+Select jobs to execute...
+
+[Tue Dec 24 22:27:12 2024]
+localrule all:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data/eCLIP.3utr.pos_IDR.bed, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data/eCLIP.3utr.pos.bed, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data/eCLIP.3utr.neg.bed
+    jobid: 0
+    reason: Input files updated by another job: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data/eCLIP.3utr.pos.bed, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/eCLIP/data/eCLIP.3utr.pos_IDR.bed
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=/tmp
+
+[Tue Dec 24 22:27:12 2024]
+Finished job 0.
+3 of 3 steps (100%) done
+Complete log: .snakemake/log/2024-12-24T222328.069479.snakemake.log

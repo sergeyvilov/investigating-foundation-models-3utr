@@ -1,0 +1,196 @@
+Submitted batch job 19501427
+job finished with no error messages in log file, exiting...
+Submitted batch job 19501609
+job finished with no error messages in log file, exiting...
+Submitted batch job 19501720
+job finished with no error messages in log file, exiting...
+Submitted batch job 19502031
+job finished with no error messages in log file, exiting...
+Submitted batch job 19502403
+srun: error: gpusrv54: task 0: Exited with exit code 1
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-z//log
+Submitted batch job 19519737
+Submitted batch job 19519771
+job finished with no error messages in log file, exiting...
+slurmstepd: error: *** STEP 19519771.0 ON gpusrv54 CANCELLED AT 2024-03-18T13:34:00 ***
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-z//log
+Submitted batch job 19519787
+job finished with no error messages in log file, exiting...
+Submitted batch job 19520290
+job finished with no error messages in log file, exiting...
+Submitted batch job 19520509
+Submitted batch job 19520576
+job finished with no error messages in log file, exiting...
+Submitted batch job 19520843
+Submitted batch job 19520857
+job finished with no error messages in log file, exiting...
+job finished with no error messages in log file, exiting...
+Submitted batch job 19520881
+job finished with no error messages in log file, exiting...
+Submitted batch job 19520930
+job finished with no error messages in log file, exiting...
+Submitted batch job 19520947
+job finished with no error messages in log file, exiting...
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+srun: error: gpusrv54: task 1: Aborted (core dumped)
+srun: error: gpusrv69: tasks 4-5: Aborted (core dumped)
+srun: error: gpusrv55: tasks 2-3: Aborted (core dumped)
+srun: error: gpusrv73: tasks 8-9: Aborted (core dumped)
+srun: error: gpusrv72: tasks 6-7: Aborted (core dumped)
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-t//log
+Submitted batch job 19520971
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+srun: error: gpusrv54: task 1: Aborted (core dumped)
+srun: error: gpusrv73: tasks 8-9: Aborted (core dumped)
+srun: error: gpusrv55: tasks 2-3: Aborted (core dumped)
+srun: error: gpusrv69: tasks 4-5: Aborted (core dumped)
+srun: error: gpusrv72: tasks 6-7: Aborted (core dumped)
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-t//log
+Submitted batch job 19520980
+Submitted batch job 19521004
+job finished with no error messages in log file, exiting...
+Submitted batch job 19521010
+job finished with no error messages in log file, exiting...
+Submitted batch job 19521020
+job finished with no error messages in log file, exiting...
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+srun: error: gpusrv54: task 1: Aborted (core dumped)
+srun: error: gpusrv55: tasks 2-3: Aborted (core dumped)
+srun: error: gpusrv72: tasks 6-7: Aborted (core dumped)
+srun: error: gpusrv69: tasks 4-5: Aborted (core dumped)
+srun: error: gpusrv73: tasks 8-9: Aborted (core dumped)
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-t//log
+Submitted batch job 19521041
+srun: error: gpusrv54: task 1: Exited with exit code 1
+srun: error: gpusrv69: task 5: Exited with exit code 1
+srun: error: gpusrv72: task 7: Exited with exit code 1
+srun: error: gpusrv73: task 8: Exited with exit code 1
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-t//log
+Submitted batch job 19521081
+srun: error: gpusrv54: task 0: Exited with exit code 1
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-t//log
+Submitted batch job 19521104
+srun: error: gpusrv54: task 0: Exited with exit code 1
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-t//log
+Submitted batch job 19521125
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+srun: error: gpusrv54: task 0: Aborted (core dumped)
+srun: error: gpusrv73: task 9: Aborted (core dumped)
+srun: error: gpusrv55: task 3: Aborted (core dumped)
+srun: error: gpusrv72: task 6: Aborted (core dumped)
+srun: error: gpusrv69: task 4: Aborted (core dumped)
+srun: error: gpusrv55: task 2: Aborted (core dumped)
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-t//log
+Submitted batch job 19521503
+Submitted batch job 19521517
+job finished with no error messages in log file, exiting...
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+srun: error: gpusrv54: task 0: Aborted (core dumped)
+srun: error: gpusrv73: task 9: Aborted (core dumped)
+srun: error: gpusrv55: task 2: Aborted (core dumped)
+srun: error: gpusrv72: task 6: Aborted (core dumped)
+srun: error: gpusrv69: task 4: Aborted (core dumped)
+srun: error: gpusrv55: task 3: Aborted (core dumped)
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-t//log
+Submitted batch job 19521671
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+srun: error: gpusrv72: task 6: Aborted (core dumped)
+srun: error: gpusrv73: task 9: Aborted (core dumped)
+srun: error: gpusrv55: task 2: Aborted (core dumped)
+srun: error: gpusrv54: task 0: Aborted (core dumped)
+srun: error: gpusrv69: task 4: Aborted (core dumped)
+srun: error: gpusrv55: task 3: Aborted (core dumped)
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-t//log
+Submitted batch job 19521700
+Submitted batch job 19521705
+job finished with no error messages in log file, exiting...
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+srun: error: gpusrv54: task 0: Aborted (core dumped)
+srun: error: gpusrv73: task 9: Aborted (core dumped)
+srun: error: gpusrv55: task 3: Aborted (core dumped)
+srun: error: gpusrv72: task 6: Aborted (core dumped)
+srun: error: gpusrv69: task 4: Aborted (core dumped)
+srun: error: gpusrv55: task 2: Aborted (core dumped)
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-t//log
+Submitted batch job 19521719
+Submitted batch job 19521730
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+srun: error: gpusrv72: task 6: Aborted (core dumped)
+srun: error: gpusrv55: task 2: Aborted (core dumped)
+srun: error: gpusrv54: task 0: Aborted (core dumped)
+srun: error: gpusrv73: task 9: Aborted (core dumped)
+srun: error: gpusrv69: task 4: Aborted (core dumped)
+srun: error: gpusrv55: task 3: Aborted (core dumped)
+slurmstepd: error: *** STEP 19521719.0 ON gpusrv54 CANCELLED AT 2024-03-18T16:11:52 ***
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-t//log
+Submitted batch job 19521746
+job finished with no error messages in log file, exiting...
+Submitted batch job 19521758
+job finished with no error messages in log file, exiting...
+Submitted batch job 19521770
+job finished with no error messages in log file, exiting...
+job finished with no error messages in log file, exiting...
+Submitted batch job 19521780
+Submitted batch job 19521805
+job finished with no error messages in log file, exiting...
+job finished with no error messages in log file, exiting...
+Submitted batch job 19521815
+Submitted batch job 19521819
+job finished with no error messages in log file, exiting...
+Submitted batch job 19521828
+slurmstepd: error: *** STEP 19521819.0 ON gpusrv54 CANCELLED AT 2024-03-18T16:30:48 ***
+exiting due to job error messages, see /lustre/groups/epigenereg01/workspace/projects/vale/mlm/models/zoonomia/dnabert2-t//log
+job finished with no error messages in log file, exiting...
+Submitted batch job 19521871
+job finished with no error messages in log file, exiting...
+Submitted batch job 19521913
+job finished with no error messages in log file, exiting...

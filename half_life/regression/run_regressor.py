@@ -30,7 +30,7 @@ from joblib import parallel_backend
 
 import optuna
 
-sys.path.append("/home/icb/sergey.vilov/workspace/MLM/mpra/utils")
+sys.path.append("/home/icb/sergey.vilov/workspace/MLM/utils")
 from mlp import *
 from misc import dotdict
 
@@ -68,12 +68,12 @@ for key,value in input_params.items():
 
 print(f'Total CPUs available: {joblib.cpu_count()}')
 
-folds_df = pd.read_csv(data_dir + 'source_data/saluki_paper/Fig3_S4/binnedgenes.txt', sep='\t', usecols=[0,1],
+folds_df = pd.read_csv(data_dir + 'agarwal_data/saluki_paper/Fig3_S4/binnedgenes.txt', sep='\t', usecols=[0,1],
                       names=['Fold','gene_id'], skiprows=1).set_index('gene_id') #folds as they are in Agarwal article
 
 folds_df = folds_df-1 #to 0-based
 
-features_df = pd.read_parquet(data_dir + 'source_data/human/seqFeatWithKmerFreqs_no5UTR.parquet.gz').set_index('GENE')
+features_df = pd.read_parquet(data_dir + 'preprocessing/seqFeatWithKmerFreqs_no5UTR.parquet.gz').set_index('GENE')
 
 target_df = features_df[['HALFLIFE']]
 features_df = features_df.drop(columns='HALFLIFE')
@@ -96,43 +96,34 @@ utr_df = pd.DataFrame(utr_df.values(),
              index=transcript_to_gene.loc[utr_df.keys()].gene_id, 
              columns=['seq'])
 
-base_features = input_params.model#.split('_')[0] 
-
 data_df = [folds_df,target_df]
 
-if 'B' in base_features:
+if input_params.model.startswith('BC3MS'):
     
     print('adding basic features')
     data_df.append(features_df.iloc[:,:8])
 
-if 'C' in base_features:
-
     print('adding codons')
     data_df.append(features_df[[x for x in features_df.columns if x.startswith('Codon.')]])
 
-if '3K' in base_features:
+    print('adding SeqWeaver RBP binding (780)')
+    for region in ('3pUTR','5pUTR','ORF'):
+        df = pd.read_csv(data_dir + f'agarwal_data/human/SeqWeaver_predictions/{region}_avg.txt.gz', sep='\t').set_index('Group.1')
+        data_df.append(df)
+
+    print('miRNA target repression (319)')
+    df = pd.read_csv(data_dir + 'agarwal_data/human/CWCS.txt.gz', sep='\t').set_index('GeneID')
+    data_df.append(df)
+
+if input_params.model=='3K' or input_params.model=='BC3MS':
 
     print("adding k-mer embeddings for 3'UTRs")
     data_df.append(features_df[[x for x in features_df.columns if x.startswith('3UTR.')]])
-
-if 'S' in base_features:
-
-    print('adding SeqWeaver RBP binding (780)')
-    for region in ('3pUTR','5pUTR','ORF'):
-        df = pd.read_csv(data_dir + f'source_data/human/SeqWeaver_predictions/{region}_avg.txt.gz', sep='\t').set_index('Group.1')
-        data_df.append(df)
-
-if 'M' in base_features:
-    print('miRNA target repression (319)')
-    df = pd.read_csv(data_dir + 'source_data/human/CWCS.txt.gz', sep='\t').set_index('GeneID')
-    data_df.append(df)
 
 data_df = pd.concat(data_df,axis=1) #concat all features, except embeddings
 
 data_df = data_df[~data_df.HALFLIFE.isna()]
 data_df.fillna(0, inplace=True)
-
-embeddings_df = None
 
 if input_params.embeddings!=None:
     print('adding language model embeddings')
@@ -145,37 +136,8 @@ if input_params.embeddings!=None:
         data_df = data_df[data_df.index.isin(embeddings_genes)]
         embeddings_df = pd.DataFrame(embeddings, index=embeddings_genes,
                                     columns=[f'emb_{x}' for x in range(embeddings.shape[1])])
-elif 'mers' in input_params.model:
-    
-    print('adding k-mer embeddings')
-
-    k = int(input_params.model[0])
-        
-    kmerizer = Kmerizer(k=k)
-    
-    Nmer_embeddings = utr_df.seq.apply(lambda x: kmerizer.kmerize(x))
-    
-    embeddings_df = pd.DataFrame(Nmer_embeddings.tolist(), index=Nmer_embeddings.index, columns=[f'emb_{x}' for x in range(4**k)])
-
-elif input_params.model=='word2vec':
-
-    print('adding word2vec embeddings')
-
-    kmerizer_w2v = Kmerizer(k=4)
-
-    w2v_model = gensim.models.Word2Vec(sentences=utr_df.seq.apply(lambda x: kmerizer_w2v.tokenize(x)), 
-                             vector_size=128, window=5, min_count=1, workers=4, sg=1) #default: CBOW
-
-    word2vec_emb = utr_df.seq.apply(
-        lambda x: np.mean([w2v_model.wv[x]  for x in kmerizer_w2v.tokenize(x)],axis=0)) #average embedding of all 4-mers in the sequence
-
-    word2vec_emb = word2vec_emb[~word2vec_emb.isna()]
-    
-    embeddings_df = pd.DataFrame(word2vec_emb.tolist(), index=word2vec_emb.index, columns=[f'emb_{x}' for x in range(128)])
-
-if embeddings_df is not None:
-    data_df = data_df.join(embeddings_df)
-    print(f'number of sequences overlapping with embeddings: {len(data_df)}')
+        data_df = data_df.join(embeddings_df)
+        print(f'number of sequences overlapping with embeddings: {len(data_df)}')
 
 X = data_df.drop(columns=['Fold','HALFLIFE']).values#all columns except HALFLIFE and fold
 
@@ -298,7 +260,11 @@ for fold in range(N_folds):
         if input_params.regressor == 'Ridge':
             pipe = sklearn.pipeline.make_pipeline(sklearn.preprocessing.StandardScaler(), 
                                               sklearn.linear_model.RidgeCV(cv=input_params.cv_splits_hpp, alphas=10.**np.arange(-5,6)))
-        
+
+        elif input_params.regressor == 'Lasso':
+            pipe = sklearn.pipeline.make_pipeline(sklearn.preprocessing.StandardScaler(), 
+                                              sklearn.linear_model.LassoCV(cv=input_params.cv_splits_hpp, n_alphas=50))
+            
         elif input_params.regressor == 'SVR':
             pipe = sklearn.pipeline.make_pipeline(sklearn.preprocessing.StandardScaler(),
                                                   sklearn.svm.SVR(**hpp_dict))

@@ -1,0 +1,85 @@
+nohup: ignoring input
+mkdir: cannot create directory ‘slurm_logs’: File exists
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job stats:
+job                      count    min threads    max threads
+---------------------  -------  -------------  -------------
+all                          1              1              1
+bedgraph_to_tsv              2              1              1
+intersect_3utr_scores        2              1              1
+total                        5              1              1
+
+Select jobs to execute...
+
+[Sun Jan 19 01:51:06 2025]
+rule bedgraph_to_tsv:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.bedGraph
+    output: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.tsv.gz.tbi
+    jobid: 6
+    reason: Missing output files: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.tsv.gz.tbi
+    wildcards: model=PhyloP-100way
+    resources: mem_mb=160978, mem_mib=153521, disk_mb=160978, disk_mib=153521, tmpdir=<TBD>
+
+Submitted job 6 with external jobid 'Submitted batch job 31222288'.
+
+[Sun Jan 19 01:51:15 2025]
+rule bedgraph_to_tsv:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.bedGraph
+    output: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.tsv.gz.tbi
+    jobid: 8
+    reason: Missing output files: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.tsv.gz.tbi
+    wildcards: model=PhyloP-241way
+    resources: mem_mb=152533, mem_mib=145467, disk_mb=152533, disk_mib=145467, tmpdir=<TBD>
+
+Submitted job 8 with external jobid 'Submitted batch job 31222289'.
+[Sun Jan 19 02:44:06 2025]
+Finished job 8.
+1 of 5 steps (20%) done
+Select jobs to execute...
+
+[Sun Jan 19 02:44:07 2025]
+rule intersect_3utr_scores:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.tsv.gz.tbi, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/UTR_coords/GRCh38_3_prime_UTR_clean-sorted.bed
+    output: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.3utr.scores.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.3utr.scores.tsv.gz.tbi
+    jobid: 7
+    reason: Missing output files: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.3utr.scores.tsv.gz; Input files updated by another job: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.tsv.gz.tbi
+    wildcards: model=PhyloP-241way
+    resources: mem_mb=28448, mem_mib=27131, disk_mb=28448, disk_mib=27131, tmpdir=<TBD>
+
+Submitted job 7 with external jobid 'Submitted batch job 31223730'.
+[Sun Jan 19 02:52:37 2025]
+Finished job 7.
+2 of 5 steps (40%) done
+[Sun Jan 19 02:56:27 2025]
+Finished job 6.
+3 of 5 steps (60%) done
+Select jobs to execute...
+
+[Sun Jan 19 02:56:27 2025]
+rule intersect_3utr_scores:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.tsv.gz.tbi, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/UTR_coords/GRCh38_3_prime_UTR_clean-sorted.bed
+    output: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.3utr.scores.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.3utr.scores.tsv.gz.tbi
+    jobid: 5
+    reason: Missing output files: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.3utr.scores.tsv.gz; Input files updated by another job: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.tsv.gz.tbi
+    wildcards: model=PhyloP-100way
+    resources: mem_mb=29435, mem_mib=28072, disk_mb=29435, disk_mib=28072, tmpdir=<TBD>
+
+Submitted job 5 with external jobid 'Submitted batch job 31224041'.
+[Sun Jan 19 03:05:18 2025]
+Finished job 5.
+4 of 5 steps (80%) done
+Select jobs to execute...
+
+[Sun Jan 19 03:05:18 2025]
+localrule all:
+    input: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.bedGraph, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.bedGraph, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.3utr.scores.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.3utr.scores.tsv.gz
+    jobid: 0
+    reason: Input files updated by another job: /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-241way.3utr.scores.tsv.gz, /lustre/groups/epigenereg01/workspace/projects/vale/mlm/variants/prefiltered/PhyloP/PhyloP-100way.3utr.scores.tsv.gz
+    resources: mem_mb=314213, mem_mib=299657, disk_mb=314213, disk_mib=299657, tmpdir=/tmp
+
+[Sun Jan 19 03:05:18 2025]
+Finished job 0.
+5 of 5 steps (100%) done
+Complete log: .snakemake/log/2025-01-19T015102.532285.snakemake.log

@@ -1,0 +1,2 @@
+NODELIST=gpusrv[43-44]
+MASTER_ADDR=gpusrv43
