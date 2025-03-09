@@ -2,7 +2,7 @@
 
 Sergey Vilov and Matthias Heinig
 
-[bioRxiv preprint](https://www.biorxiv.org/content/10.1101/2024.02.09.579631v1)
+[bioRxiv preprint](https://doi.org/10.1101/2024.02.09.579631)
 
 ## Codes for data preprocessing and analysis
 
